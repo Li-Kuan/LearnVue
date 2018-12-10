@@ -38,6 +38,20 @@
     <div class="block">
       <About @my-event="myEvent"/>
     </div>
+     <div class="block">
+      <input v-for="item in list" type="checkbox" v-model.lazy="myBox" :value="item.name">
+      <input type="checkbox" v-model="myBox" value="apple">
+      <input type="text" v-model.lazy="myText">
+      <input type="text" v-model="myValue">
+      {{myBox}}
+      {{valueNumber}}
+    
+     
+    </div>
+    <div class="block">
+        <div>{{date}}</div>
+        <div>{{date1()}}</div>
+    </div>
   </div>
 </template>
 
@@ -51,6 +65,15 @@
   @keydown.enter == @keydown.13
   props 父组向子组件传值
   自定义事件 this.$emit  子组件向父组件传值
+  v-model 双向绑定
+  修饰符 .lazy 完成输入才更新
+  
+  计算属性以及数据监听
+  computed
+  methods
+
+  属性监听
+  watch
  */
 import Vue from 'vue';
 import HelloWorld from './HelloWorld.vue'
@@ -61,8 +84,22 @@ export default {
     HelloWorld,
     About
   },
+  watch: {
+    myValue: function (newVal, oldVal) {
+      console.log(newVal, oldVal)
+    }
+  },
+  computed: {
+    valueNumber () {
+      return this.myValue.replace(/\d/g, '%')
+    },
+    date() {
+      return Date();
+    }
+  },
   data: function learn() {
     return {
+      myValue: '',
       link:'###',
       className: {
         red: true,
@@ -70,6 +107,8 @@ export default {
       },
       world: 'hello',
       fruits: '<a>apple</a>',
+      myBox: [],
+      myText: '',
       list: [
         {
           name: 'banana',
@@ -114,6 +153,9 @@ export default {
     },
     myEvent(prams) {
       alert(`123${prams}`)
+    },
+    date1() {
+      return Date()
     }
   }
   /* data() { 
