@@ -66,8 +66,50 @@
   props 父组向子组件传值
   自定义事件 this.$emit  子组件向父组件传值
   v-model 双向绑定
-  修饰符 .lazy 完成输入才更新
-  
+    修饰符 
+    .lazy 完成输入才更新
+    .trim 在我们的输入框中，我们经常需要过滤一下一些输入完密码不小心多敲了一下空格的兄弟输入的内容。
+    .number
+      如果你先输入数字，那它就会限制你输入的只能是数字。
+      如果你先输入字符串，那它就相当于没有加.number
+
+  事件修饰符
+    .stop 由于事件冒泡的机制，我们给元素绑定点击事件的时候，也会触发父级的点击事件。相当于调用了event.stopPropagation()方法。
+    .prevent 用于阻止事件的默认行为，例如，当点击提交按钮时阻止对表单的提交。相当于调用了event.preventDefault()方法。
+    .once 这个修饰符的用法也是和名字一样简单粗暴，只能用一次，绑定了事件以后只能触发一次，第二次就不会触发。
+
+    .native
+    我们经常会写很多的小组件，有些小组件可能会绑定一些事件，但是，像下面这样绑定事件是不会触发的
+    <My-component @click="shout(3)"></My-component>
+    必须使用.native来修饰这个click事件（即），可以理解为该修饰符的作用就是把一个vue组件转化为一个普通的HTML标签，
+    注意：使用.native修饰符来操作普通HTML标签是会令事件失效的
+    
+    .left 左键点击
+    .right 右键点击
+    .middle 中键点击
+
+  .keyCode
+    //普通键
+    .enter
+    .tab
+    .delete //(捕获“删除”和“退格”键)
+    .space
+    .esc
+    .up
+    .down
+    .left
+    .right
+    //系统修
+    .ctrl
+    .alt
+    .meta
+    .shift
+  .prop
+
+    通过自定义属性存储变量，避免暴露数据
+    防止污染 HTML 结构
+
+
   计算属性以及数据监听
   computed
   methods
@@ -91,13 +133,13 @@ export default {
   },
   computed: {
     valueNumber () {
-      return this.myValue.replace(/\d/g, '%')
+      return this.myValue.replace(/\d/g, '*')
     },
     date() {
       return Date();
     }
   },
-  data: function learn() {
+  data: function () {
     return {
       myValue: '',
       link:'###',

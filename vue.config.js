@@ -6,12 +6,24 @@ module.exports = {
   */
   baseUrl: '',
   runtimeCompiler: true,
+  chainWebpack: config => {
+    config
+      .plugin('html')
+      .tap(args => {
+        args[0].favicon = ''
+        return args
+      })
+      /* .tap(args => {
+        args[0].template = ''
+        return args
+      }) */
+  },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'less',
       patterns: []
-    },
-    
+    }
+
   },
   /* 服务端口号 */
   devServer: {
