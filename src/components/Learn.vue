@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 <template>
   <div class="learn">
     <h1>Vue Learn {{world}} </h1>
@@ -10,16 +10,19 @@
     </div>
     <div class="block">
       <ul>
-        <li v-for="(item, index) in list">{{`序号${index}: ${item.name} 价格：${item.price}`}}</li>
+        <li v-for="(item, index) in list" :key="item.name">{{`序号${index}: ${item.name} 价格：${item.price}`}}</li>
       </ul>
     </div>
     <div class="block">
       <ul>
-        <li v-for="(value, key) in obj">{{`${key}: ${value}`}}</li>
+        <li v-for="(value, key) in obj" :key="value">{{`${key}: ${value}`}}</li>
       </ul>
     </div>
     <div class="block">
-      <HelloWorld msg="Learn My Vue.js"/>
+      <hello-world msg="Learn My Vue.js"/>
+    </div>
+    <div class="block">
+      <p :is="HelloWorld" msg="IS 动态组件"></p>
     </div>
     <div class="block">
       <button v-on:click="addItem">添加</button>
@@ -39,7 +42,7 @@
       <About @my-event="myEvent"/>
     </div>
      <div class="block">
-      <input v-for="item in list" type="checkbox" v-model.lazy="myBox" :value="item.name">
+      <input v-for="item in list" :key="item.name" type="checkbox" v-model.lazy="myBox" :value="item.name">
       <input type="checkbox" v-model="myBox" value="apple">
       <input type="text" v-model.lazy="myText">
       <input type="text" v-model="myValue">
@@ -61,6 +64,8 @@
 /*
   v-bind 缩写 :
   v-on 缩写 @
+  插槽功能：<slot name="header">
+
   v-if v-show 配合 v-else
   @keydown.enter == @keydown.13
   props 父组向子组件传值
@@ -126,6 +131,7 @@ export default {
     HelloWorld,
     About
   },
+
   watch: {
     myValue: function (newVal, oldVal) {
       console.log(newVal, oldVal)
@@ -141,6 +147,7 @@ export default {
   },
   data: function () {
     return {
+      HelloWorld: 'HelloWorld',
       myValue: '',
       link:'###',
       className: {

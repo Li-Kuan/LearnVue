@@ -2,7 +2,7 @@
   <header>  
       <nav id="nav">
         <ul class="ul-nav clearfix">
-          <li v-for="(menuitem, index) in navMneu" @click="thisNav(menuitem.name)">
+          <li v-for="(menuitem, index) in navMneu" :key="menuitem.name" @click="thisNav(menuitem.name)">
             <router-link :index="index" :to="{path: menuitem.path, query: menuitem.query}">{{menuitem.name}}</router-link>
           </li>
          <!--  <li>

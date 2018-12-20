@@ -1,8 +1,8 @@
-/* eslint-disable */ 
+
 <template>
   <div class="about">
     <h1>About 组件</h1>
-    <div v-for="item in title">{{item.name}}this is about page</div>
+    <div v-for="item in title" :key="item.name">{{item.name}}this is about page</div>
     <span>{{fruits}}</span>
     <button @click="$emit('my-event', '/Lk666/')">$emit</button>
     <button @click="myEvent1">$emit</button>
@@ -37,7 +37,7 @@ const store = new Vuex.Store({
 /* store.commit('increment')
 
 console.log(store.state.count, 'lk') // -> 1 */
-export default {
+const About = {
   props: ['title', 'fruits'],
   data: function () {
     return {
@@ -63,6 +63,7 @@ export default {
     }
   }
 }
+export default About;
 </script>
 
 <style>

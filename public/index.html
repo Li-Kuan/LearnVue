@@ -8,14 +8,46 @@
     <!-- <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico"> -->
     <!-- <title id="title">Learn</title> -->
     <!-- <title id="title"></title> -->
+    <!-- <script type="text/javascript" src="../static/jquery.js"></script> -->
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>  --> 
   </head>
   <body>
     <noscript>
       <strong>We're sorry but vue-learn doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app">
-      LK
+      
+    </div>
+    <div id="test">
+      
     </div>
     <!-- built files will be auto injected -->
   </body>
+  <script>
+  function makeHtml() {
+    var arrHtml = [
+      {name: 'lllllllllllllll'},
+      {name: 'kkkkkkkkkkkkkkkk'}
+    ];
+    var arrElemet = ['<ul>'];
+    var ul = document.createElement('ul');
+    for (let i = 0; i < arrHtml.length; i++) {
+      var element = arrHtml[i];
+      var html = '<li onclick="gogo(\' '+ element.name +' \')">' +element.name +'</li>'
+      arrElemet.push(html);
+    }
+      arrElemet.push('</ul>');
+    document.getElementById('test').innerText = arrElemet.join(' ');
+    // document.getElementById('test').innerHTML = arrElemet.join(' ');
+      ul.innerHTML = arrElemet.join(' ');
+    document.getElementById('test').appendChild(ul);
+
+    console.log(typeof (arrElemet.join(' ')), typeof (ul))
+    console.log(arrElemet.join(' '), ul)
+  }
+  // makeHtml();
+  function gogo(params) {
+    alert(params);
+  }
+  </script>
 </html>
