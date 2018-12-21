@@ -5,17 +5,20 @@
         <div v-show="isShow" key="1">COMPONTENTS</div>
         <div v-else key="2">COMPONTENTS ELSE</div> 
       </transition> -->
+      <div class="text">层宝贝我们在一起</div>
       <transition 
         :css="false"
         @beforeEnter="beforeEnter"
         @enter="enter"
         @leave="leave">
-        <div class="aniamte-div" v-show="isShow">COMPONTENTS</div>
+        
+        <div class="aniamte-div" v-show="isShow">{{loveTime}}</div>
         <!-- <div v-else key="2">COMPONTENTS ELSE</div> -->
       </transition> 
     </div>
     
-    <button @click="fnShow">展示/关闭</button>
+    <!-- <button @click="fnShow" v-color="'#f33'">展示/关闭</button>
+    <input type="text" v-focus> -->
   </div>
 </template>
 <script>
@@ -56,13 +59,87 @@
     data: function () {
       return {
         isShow: true,
-        appear: true
+        appear: true,
+        loveTime: ''
       }
     },
     directives: {
       color: function (el, binding) {
+        console.log(binding)
         el.style.color = binding.value;
+      },
+      focus:{
+        inserted (el, binding) {
+          el.focus();
+        }
       }
+    },
+    computed: {
+      computeDate1: function () {
+        let passTime = new Date('2013/04/04 00:00:00');
+        let nowTime = new Date();
+        setInterval(function () {
+          nowTime = new Date();
+        }, 1000);
+        // 相差毫秒数
+          let timeDiff = nowTime.getTime() - passTime.getTime();
+          let days=0,
+              hours=0,
+              minutes=0,
+              seconds=0;//时间默认值
+          // 一天有多少毫秒
+          let msec1 = 24 * 3600 * 1000;
+
+          // 一小时有多少毫秒
+          let msec2 = 60 * 60 * 1000;
+
+          days = timeDiff / msec1;
+
+          hours =  (timeDiff % msec1) / msec2;
+
+          minutes = ((timeDiff % msec1) % msec2) / (60 * 1000);
+          seconds = ((timeDiff % msec1) % msec2) % (60 * 1000) / 1000;
+          // console.log([days, hours, minutes, seconds].join('-'));
+          return [Math.floor(days), Math.floor(hours), Math.floor(minutes), Math.floor(seconds)].join(':');
+        // return [Math.floor(days), Math.floor(hours), Math.floor(minutes), Math.floor(seconds)].join(':');
+      }
+    },
+    beforeMount: function () {
+        var self = this;
+        let passTime = new Date('2013/04/04 00:00:00');
+        setInterval(gettime, 1000);
+        function gettime() {
+          let nowTime = new Date();
+          // 相差毫秒数
+            let timeDiff = nowTime.getTime() - passTime.getTime();
+            let days=0,
+                hours=0,
+                minutes=0,
+                seconds=0;//时间默认值
+            // 一天有多少毫秒
+            let msec1 = 24 * 3600 * 1000;
+
+            // 一小时有多少毫秒
+            let msec2 = 60 * 60 * 1000;
+
+            days = timeDiff / msec1;
+
+            hours =  (timeDiff % msec1) / msec2;
+
+            minutes = ((timeDiff % msec1) % msec2) / (60 * 1000);
+            seconds = ((timeDiff % msec1) % msec2) % (60 * 1000) / 1000;
+            // console.log([days, hours, minutes, seconds].join('-'));
+            function init(num) {
+              if(num < 10) {
+                num = '0' + Math.floor(num);
+              }else {
+                num = Math.floor(num);
+              }
+              return num;
+            }
+            self.loveTime = [init(days) + '天', init(hours)+ '时', init(minutes)+ '分', init(seconds) + '秒'].join(':');
+        };
+        gettime();
     },
     methods: {
       fnShow: function () {
@@ -86,6 +163,9 @@
           left: '1000px',
           opacity: 0
         },1000, done)
+      },
+      computeDate: function () {
+      
       }
     }
   }
@@ -120,9 +200,21 @@
     opacity: 0
   }
   .aniamte-div {
+    font-size: 36px;
     position: absolute;
-    left: 500px;
-    top: 50px;
+    left: 0;
+    right: 0;
+    top: 50%;
+    bottom: 0;
+  }
+  .text {
+    font-size: 36px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40%;
+    bottom: 0;
+    color: #666;
   }
 </style>
 
