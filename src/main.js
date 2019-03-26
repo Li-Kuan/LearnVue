@@ -2,10 +2,11 @@ import Vue from 'vue'
 import router from './router'
 import store from './store'
 import App from './App.vue'
+import BlockUI from 'vue-blockui'
 import "../static/jquery.js";
 // 取消 Vue 所有的日志与警告。
 Vue.config.silent = true;
-
+ 
 Vue.config.productionTip = false;
 
 Vue.config.errorHandler = function (err, vm, info) {
@@ -16,6 +17,7 @@ Vue.config.errorHandler = function (err, vm, info) {
      // eslint-disable-next-line
      console.error(error);
 };
+Vue.use(BlockUI);
 new Vue({
   //el: '#app',
   router,

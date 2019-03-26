@@ -33,11 +33,11 @@ export default new Router({
       },
       component: () => import( /* webpackChunkName: "Learn" */ './components/Learn.vue')
     }, {
-      path: '/VueCompontent',
+      path: '/VueCompontent/:name',
       name: 'VueCompontent',
       meta: {
         title: 'VueCompontent'
-      },
+      },  
       component: () => import( /* webpackChunkName: "Learn" */ './components/VueCompontent.vue')
     }
   ]

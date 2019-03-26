@@ -2,7 +2,9 @@
 <template>
   <div class="learn">
     <h1>Vue Learn {{world}} </h1>
-    
+    <div class="block">
+     <!--  <BlockUI :message="123567890" :url="load_url"></BlockUI> -->
+    </div>
     <!-- <span :title="world" v-html="world"> {{fruits}}</span> 
     <span :title="world" v-text="world"> {{fruits}}</span> -->
     <div class="block">
@@ -125,6 +127,7 @@
 import Vue from 'vue';
 import HelloWorld from './HelloWorld.vue'
 import About from '../views/About.vue'
+import loading from "../assets/logo.png";
 export default {
   name: 'Learn',
   components:{
@@ -139,7 +142,8 @@ export default {
   },
   computed: {
     valueNumber () {
-      return this.myValue.replace(/\d/g, '*')
+      // phone.replace(/^(\d{4})\d{4}(\d+)/,"$1****$2")
+      return this.myValue.replace(/ /g, '*')
     },
     date() {
       return Date();
@@ -147,6 +151,7 @@ export default {
   },
   data: function () {
     return {
+      load_url: loading,
       HelloWorld: 'HelloWorld',
       myValue: '',
       link:'###',

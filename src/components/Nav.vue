@@ -5,6 +5,10 @@
           <li v-for="(menuitem, index) in navMneu" :key="menuitem.name" @click="thisNav(menuitem.name)">
             <router-link :index="index" :to="{path: menuitem.path, query: menuitem.query}">{{menuitem.name}}</router-link>
           </li>
+          <li> 
+            <!-- <router-link :index="index" :to="{name: menuitem.name, query: menuitem.query, params:{name:888}}">{{menuitem.name}}</router-link> -->
+            <!-- <router-link :to="{name: 'VueCompontent',  params:{num:888, name: 211}}">VueCompontent / name路由跳转 params传参</router-link> -->
+          </li>
          <!--  <li>
             <router-link to="/about">About</router-link>
           </li>
@@ -27,7 +31,7 @@
           {name: 'home', path: '/', query: ''},
           {name: 'about', path: '/about', query: ''},
           {name: 'learn', path: '/learn', query: { learn: 'vuelearn' }},
-          {name: 'VueCompontent', path: '/VueCompontent', query: ''},
+          {name: 'VueCompontent', path: '/VueCompontent/lk', query: { name: 'vuelearn' }},
         ]
       }
     },

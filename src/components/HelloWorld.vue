@@ -1,5 +1,7 @@
 <template>
   <div class="hello">
+    <slot name="hello2"></slot>
+    <slot name="hello1"></slot>
     <h1>{{ msg }}</h1>
   </div>
 </template>

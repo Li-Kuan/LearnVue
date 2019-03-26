@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to My Vue.js App"/>
+    <HelloWorld msg="Welcome to My Vue.js App">
+      <h1 slot="hello2">{{name}}</h1>
+      <h1 slot="hello1">sss</h1>
+    </HelloWorld>
   </div>
 </template>
 
@@ -12,6 +15,11 @@ export default {
   name: 'home',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      name: 'slot defind'
+    }
   }
 }
 </script>
